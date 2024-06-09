@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useLocation } from 'react-router-dom'
 
-import { Message, Messages, ModelResponse } from '~/entities/messages'
+import { Message, ModelResponse } from '~/entities/messages'
 import createAssistantMessage from '~/services/createAssistantMessage'
 import createUserMessage from '~/services/createUserMessage'
+import getChatIndex from '~/services/getChatIndex'
 import requester from '~/services/requester'
 import Store from '~/services/store'
 import { disChats, useChats } from '~/stores/chats'
@@ -20,7 +20,6 @@ import './index.css'
 
 export default function Chat () {
 
-  const location = useLocation()
   const [index, setIndex] = useState(-1)
   const [loading, setLoading] = useState(true)
   const chats = useChats('chats')
@@ -117,10 +116,7 @@ export default function Chat () {
   }, [index])
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search)
-    const indexParam = queryParams.get('index')
-    const indexParsed = indexParam ? parseInt(indexParam) : null
-    setIndex(indexParsed || 0)
+    setIndex(getChatIndex())
   }, [])
 
   return (

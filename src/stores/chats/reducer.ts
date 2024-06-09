@@ -13,6 +13,14 @@ export default function reducer (
         state.chats[index] = [message]
       return { chats: [...state.chats] }
     }
+    case 'DELETE_CHAT': {
+      if (!Array.isArray(state.chats[action.payload])) return state
+      state.chats.splice(action.payload, 1)
+      return { chats: [...state.chats] }
+    }
+    case 'LOAD_CHATS': {
+      return { chats: [...action.payload] }
+    }
     default: return state
   }
 }
