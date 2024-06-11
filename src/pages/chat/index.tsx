@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 import { Message, ModelResponse } from '~/entities/messages'
 import createAssistantMessage from '~/services/createAssistantMessage'
@@ -20,6 +21,7 @@ import './index.css'
 
 export default function Chat () {
 
+  const { chat } = useParams()
   const [index, setIndex] = useState(-1)
   const [loading, setLoading] = useState(true)
   const chats = useChats('chats')
@@ -116,20 +118,21 @@ export default function Chat () {
   }, [index])
 
   useEffect(() => {
+    textAreaRef.current?.focus()
+    talkRef.current?.replaceChildren()
     setIndex(getChatIndex())
-  }, [])
+  }, [chat])
 
   return (
     <RowContainer>
-      <Menu />
+      <Menu loading={loading} />
       <ColumnContainer>
-        <Talk ref={talkRef}>
-          { loading && <Loading src={LOADING} /> }
-        </Talk>
+        { loading && <Loading src={LOADING} /> }
+        <Talk ref={talkRef} />
         <InputContainer>
           <TextArea
-            ref={textAreaRef}
             placeholder='Message Ollama'
+            ref={textAreaRef}
           />
           <Button
             onClick={requestHandler}

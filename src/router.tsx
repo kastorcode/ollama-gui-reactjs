@@ -1,14 +1,17 @@
+import { lazy } from 'react'
 import { createBrowserRouter } from 'react-router-dom'
 
 import ROUTES from '~/constants/routes'
-import Chat from '~/pages/chat'
-import Config from '~/pages/config'
-import SplashScreen from '~/pages/splashScreen'
+
+const Chat = lazy(() => import('~/pages/chat'))
+const Config = lazy(() => import('~/pages/config'))
+const NotFound = lazy(() => import('~/pages/notFound'))
+const SplashScreen = lazy(() => import('~/pages/splashScreen'))
 
 const router = createBrowserRouter([
   {
     path: ROUTES.ROOT,
-    errorElement: <SplashScreen><Chat /></SplashScreen>,
+    errorElement: <SplashScreen><NotFound /></SplashScreen>,
     element: <SplashScreen><Chat /></SplashScreen>
   },
   {
