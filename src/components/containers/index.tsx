@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
+import useIsMobile from '~/hooks/useIsMobile'
 import { StyledColumnContainer, StyledRowContainer } from './style'
 
 interface ContainerProps {
@@ -7,20 +8,45 @@ interface ContainerProps {
   style ?: React.CSSProperties
 }
 
-
 export function ColumnContainer ({ children, style } : ContainerProps) {
+
+  const isMobile = useIsMobile()
+
   return (
-    <StyledColumnContainer style={style}>
+    <StyledColumnContainer isMobile={isMobile} style={style}>
       { children }
     </StyledColumnContainer>
   )
+
 }
 
+export const RowContainer = forwardRef<HTMLDivElement, ContainerProps>
+(({ children, style } : ContainerProps, ref) => {
 
-export function RowContainer ({ children } : ContainerProps) {
+  const isMobile = useIsMobile()
+
   return (
-    <StyledRowContainer>
+    <StyledRowContainer isMobile={isMobile} ref={ref} style={style}>
       { children }
     </StyledRowContainer>
   )
+
+})
+
+interface FillerProps {
+  children ?: React.ReactNode,
+  height ?: string,
+  width ?: string
+}
+
+export function Filler ({
+  children, height='100%', width='100%'
+} : FillerProps) {
+
+  return (
+    <div style={{ height, width }}>
+      { children }
+    </div>
+  )
+
 }

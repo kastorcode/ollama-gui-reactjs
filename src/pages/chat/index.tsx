@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
+import ROUTES from '~/constants/routes'
 import { Message, ModelResponse } from '~/entities/messages'
 import createAssistantMessage from '~/services/createAssistantMessage'
 import createUserMessage from '~/services/createUserMessage'
 import getChatIndex from '~/services/getChatIndex'
 import requester from '~/services/requester'
+import scroller from '~/services/scroller'
 import Store from '~/services/store'
 import { disChats, useChats } from '~/stores/chats'
 import { addMessage } from '~/stores/chats/actions'
@@ -21,13 +23,15 @@ import './index.css'
 
 export default function Chat () {
 
+  const navigate = useNavigate()
   const { chat } = useParams()
-  const [index, setIndex] = useState(-1)
+  const [index, setIndex] = useState<number|null>(null)
   const [loading, setLoading] = useState(true)
   const chats = useChats('chats')
   const { autoSaveChats, modelName, modelUrl } = useConfig('config')
   const assistantMessage = useRef<Message>(createAssistantMessage(''))
   const renderCount = useRef(0)
+  const rowContainerRef = useRef<HTMLDivElement>(null)
   const talkRef = useRef<HTMLDivElement>(null)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
 
@@ -37,22 +41,22 @@ export default function Chat () {
     if (!messageText) return
     setLoading(true)
     const userMessage = createUserMessage(messageText)
-    updateTalk(userMessage)
-    disChats(addMessage({ index, message: userMessage }))
+    updateTalk(false, userMessage)
+    disChats(addMessage({ index: index as number, message: userMessage }))
     assistantMessage.current = createAssistantMessage('')
     requester(
-      modelUrl, modelName, chats[index], responseHandler, errorHandler
+      modelUrl, modelName, chats[index as number], responseHandler, errorHandler
     )
   }
 
   function responseHandler (response : ModelResponse) {
     if (response.message.content) {
-      updateTalk(response.message)
+      updateTalk(false, response.message)
       assistantMessage.current.content += response.message.content
     }
     if (response.done) {
       appendBr(2)
-      disChats(addMessage({ index, message: assistantMessage.current }))
+      disChats(addMessage({ index: index as number, message: assistantMessage.current }))
       setLoading(false)
     }
   }
@@ -67,8 +71,11 @@ export default function Chat () {
     return textAreaRef.current?.value as string
   }
 
-  function updateTalk (message : Message) {
-    roles[message.role](message.content)
+  function updateTalk (loaded : boolean, { role, content } : Message) {
+    roles[role](content)
+    if (loaded && role === 'assistant') {
+      appendBr(2)
+    }
   }
 
   const roles : {
@@ -108,10 +115,18 @@ export default function Chat () {
   }, [autoSaveChats, chats])
 
   useEffect(() => {
-    if (!loading) setLoading(true)
+    if (index === null) {
+      return
+    }
+    if (index < 0 || index > chats.length) {
+      navigate(ROUTES.ROOT)
+      return
+    }
+    scroller(rowContainerRef, 1)
     if (chats[index]) {
+      if (!loading) setLoading(true)
       chats[index].forEach(message => {
-        updateTalk(message)
+        updateTalk(true, message)
       })
     }
     setLoading(false)
@@ -124,8 +139,8 @@ export default function Chat () {
   }, [chat])
 
   return (
-    <RowContainer>
-      <Menu loading={loading} />
+    <RowContainer ref={rowContainerRef}>
+      <Menu loading={loading} scrollRef={rowContainerRef} />
       <ColumnContainer>
         { loading && <Loading src={LOADING} /> }
         <Talk ref={talkRef} />
@@ -134,11 +149,8 @@ export default function Chat () {
             placeholder='Message Ollama'
             ref={textAreaRef}
           />
-          <Button
-            onClick={requestHandler}
-            style={{ paddingBottom: '0', paddingTop: '0' }}
-          >
-            <svg width="48" height="48" fill="none" viewBox="0 0 32 32"><path fill="currentColor" fill-rule="evenodd" d="M15.192 8.906a1.143 1.143 0 0 1 1.616 0l5.143 5.143a1.143 1.143 0 0 1-1.616 1.616l-3.192-3.192v9.813a1.143 1.143 0 0 1-2.286 0v-9.813l-3.192 3.192a1.143 1.143 0 1 1-1.616-1.616z" clip-rule="evenodd"></path></svg>
+          <Button onClick={requestHandler}>
+            <svg width="24" height="24" viewBox="0 0 14 16"><path fill="#fff" fill-rule="evenodd" d="m6.2 0.9q0.2-0.2 0.4-0.2 0.2-0.1 0.4-0.1 0.2 0 0.4 0.1 0.2 0 0.4 0.2l5.2 5.1c0.2 0.3 0.3 0.6 0.3 0.9 0 0.2-0.2 0.5-0.4 0.7-0.2 0.3-0.5 0.4-0.8 0.4-0.3 0-0.5-0.1-0.8-0.3l-3.2-3.2v9.8c0 0.3-0.1 0.6-0.3 0.8-0.2 0.2-0.5 0.3-0.8 0.3-0.3 0-0.6-0.1-0.8-0.3-0.2-0.2-0.3-0.5-0.3-0.8v-9.8l-3.2 3.2c-0.2 0.2-0.5 0.3-0.8 0.3-0.4 0-0.7-0.1-0.9-0.3-0.2-0.2-0.3-0.5-0.3-0.8 0-0.3 0.1-0.6 0.3-0.9z"/></svg>
           </Button>
         </InputContainer>
       </ColumnContainer>
