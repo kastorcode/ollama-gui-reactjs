@@ -4,7 +4,7 @@ import { Input } from './style'
 
 
 interface InputProps {
-  onChange : (event : React.ChangeEvent<HTMLInputElement>) => void,
+  onChange : (e : React.ChangeEvent<HTMLInputElement>) => void,
   placeholder : string,
   value : string
 }

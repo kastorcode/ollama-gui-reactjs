@@ -12,6 +12,7 @@ import Store from '~/services/store'
 import { disChats, useChats } from '~/stores/chats'
 import { addMessage } from '~/stores/chats/actions'
 import { useConfig } from '~/stores/config'
+import About from '~/components/about'
 import Button from '~/components/button'
 import { ColumnContainer, RowContainer } from '~/components/containers'
 import Menu from '~/components/menu'
@@ -141,16 +142,16 @@ export default function Chat () {
   return (
     <RowContainer ref={rowContainerRef}>
       <Menu loading={loading} scrollRef={rowContainerRef} />
-      <ColumnContainer>
+      <ColumnContainer style={{ padding: 8, paddingRight: 0 }}>
         { loading && <Loading src={LOADING} /> }
-        <Talk ref={talkRef} />
+        { chats.length ? <Talk ref={talkRef} /> : <About /> }
         <InputContainer>
           <TextArea
             placeholder='Message Ollama'
             ref={textAreaRef}
           />
           <Button onClick={requestHandler}>
-            <svg width="24" height="24" viewBox="0 0 14 16"><path fill="#fff" fill-rule="evenodd" d="m6.2 0.9q0.2-0.2 0.4-0.2 0.2-0.1 0.4-0.1 0.2 0 0.4 0.1 0.2 0 0.4 0.2l5.2 5.1c0.2 0.3 0.3 0.6 0.3 0.9 0 0.2-0.2 0.5-0.4 0.7-0.2 0.3-0.5 0.4-0.8 0.4-0.3 0-0.5-0.1-0.8-0.3l-3.2-3.2v9.8c0 0.3-0.1 0.6-0.3 0.8-0.2 0.2-0.5 0.3-0.8 0.3-0.3 0-0.6-0.1-0.8-0.3-0.2-0.2-0.3-0.5-0.3-0.8v-9.8l-3.2 3.2c-0.2 0.2-0.5 0.3-0.8 0.3-0.4 0-0.7-0.1-0.9-0.3-0.2-0.2-0.3-0.5-0.3-0.8 0-0.3 0.1-0.6 0.3-0.9z"/></svg>
+            <svg width="24" height="24" viewBox="0 0 14 16"><path fill="#fff" d="m6.2 0.9q0.2-0.2 0.4-0.2 0.2-0.1 0.4-0.1 0.2 0 0.4 0.1 0.2 0 0.4 0.2l5.2 5.1c0.2 0.3 0.3 0.6 0.3 0.9 0 0.2-0.2 0.5-0.4 0.7-0.2 0.3-0.5 0.4-0.8 0.4-0.3 0-0.5-0.1-0.8-0.3l-3.2-3.2v9.8c0 0.3-0.1 0.6-0.3 0.8-0.2 0.2-0.5 0.3-0.8 0.3-0.3 0-0.6-0.1-0.8-0.3-0.2-0.2-0.3-0.5-0.3-0.8v-9.8l-3.2 3.2c-0.2 0.2-0.5 0.3-0.8 0.3-0.4 0-0.7-0.1-0.9-0.3-0.2-0.2-0.3-0.5-0.3-0.8 0-0.3 0.1-0.6 0.3-0.9z"/></svg>
           </Button>
         </InputContainer>
       </ColumnContainer>

@@ -6,10 +6,12 @@ import { updateConfig } from '~/stores/config/actions'
 
 export default class AppBoot {
 
+  public static booted = false
+
   public static async run () {
     AppBoot.updateConfigHandler()
     AppBoot.loadChatsHandler()
-    await AppBoot.sleep(500)
+    await AppBoot.sleep(1000)
   }
 
   private static sleep (ms : number) {

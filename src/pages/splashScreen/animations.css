@@ -1,0 +1,19 @@
+.anim-enter {
+  opacity: 0;
+}
+
+.anim-enter-active {
+  opacity: 1;
+  transition: 500ms;
+}
+
+.anim-exit {
+  right: 0%;
+  transform: rotateZ(0deg);
+}
+
+.anim-exit-active {
+  right: 100%;
+  transform: rotateZ(-180deg);
+  transition: 500ms;
+}

@@ -7,8 +7,6 @@ export const StyledColumnContainer = styled.div<{ isMobile : boolean }>`
   height: 100%;
   justify-content: center;
   min-width: ${({ isMobile }) => isMobile ? '100vw' : '360px'};
-  padding: 8px;
-  padding-right: 0;
   width: 100%;
 `
 

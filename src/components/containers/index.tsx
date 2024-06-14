@@ -35,16 +35,17 @@ export const RowContainer = forwardRef<HTMLDivElement, ContainerProps>
 
 interface FillerProps {
   children ?: React.ReactNode,
-  height ?: string,
-  width ?: string
+  height ?: React.CSSProperties['height'],
+  textAlign ?: React.CSSProperties['textAlign'],
+  width ?: React.CSSProperties['width']
 }
 
 export function Filler ({
-  children, height='100%', width='100%'
+  children, height='100%', textAlign='center', width='100%'
 } : FillerProps) {
 
   return (
-    <div style={{ height, width }}>
+    <div style={{ height, textAlign, width }}>
       { children }
     </div>
   )

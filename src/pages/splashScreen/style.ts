@@ -6,7 +6,10 @@ export const Container = styled.div`
   display: flex;
   height: 100%;
   justify-content: center;
+  position: absolute;
+  top: 0;
   width: 100%;
+  z-index: 9;
 `
 
 export const Logo = styled.img`

@@ -8,6 +8,7 @@ import { disConfig, useConfig } from '~/stores/config'
 import { toggleAutoSaveChats, updateConfig } from '~/stores/config/actions'
 import Button from '~/components/button'
 import { ColumnContainer, Filler, RowContainer } from '~/components/containers'
+import Footer from '~/components/footer'
 import Menu from '~/components/menu'
 import TextInput from '~/components/textInput'
 import Toggle from '~/components/toggle'
@@ -52,6 +53,7 @@ export default function Config () {
     <RowContainer ref={rowContainerRef}>
       <Menu scrollRef={rowContainerRef} />
       <ColumnContainer>
+        <Filler />
         <Filler height='auto' width='88%'>
           <Toggle
             checked={config.autoSaveChats} id='autoSaveChats'
@@ -74,7 +76,10 @@ export default function Config () {
             <Button onClick={handleSave}>Save</Button>
           </ButtonsContainer>
         </Filler>
+        <Filler />
+        <Footer />
       </ColumnContainer>
     </RowContainer>
   )
+
 }
