@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkollama_gui_reactjs=self.webpackChunkollama_gui_reactjs||[]).push([[625],{625:(e,u,a)=>{a.r(u),a.d(u,{default:()=>c});var l=a(43),s=a(216),t=a(724);function c(){const e=(0,s.Zp)();return(0,l.useEffect)((()=>{e(t.A.ROOT)})),null}}}]);
+//# sourceMappingURL=625.c20445b6.chunk.js.map
