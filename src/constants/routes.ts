@@ -1,7 +1,9 @@
+const ROOT = '/ollama-gui-reactjs'
+
 export default {
-  ROOT: '/',
-  CHAT: '/chat',
-  CHAT_INDEX: '/chat/:chat',
-  CONFIG: '/config',
+  ROOT,
+  CHAT: `${ROOT}/chat`,
+  CHAT_INDEX: `${ROOT}/chat/:chat`,
+  CONFIG: `${ROOT}/config`,
   GO_BACK: -1
 }

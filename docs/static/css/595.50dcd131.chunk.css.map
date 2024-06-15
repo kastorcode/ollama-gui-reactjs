@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/595.50dcd131.chunk.css","mappings":"AAAA,aACE,0BAAwC,CACxC,iBAAkB,CAClB,WAAY,CACZ,yBAAkB,CAAlB,sBAAkB,CAAlB,iBACF","sources":["pages/chat/index.css"],"sourcesContent":[".userMessage {\n  background-color: rgba(255,255,255,0.25);\n  border-radius: 8px;\n  padding: 8px;\n  width: fit-content;\n}"],"names":[],"sourceRoot":""}

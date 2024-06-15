@@ -15,8 +15,6 @@ function SplashScreen ({ children } : SplashScreenProps) {
 
   useEffect(() => {
     if (!children) return
-    if (AppBoot.booted) return
-    AppBoot.booted = true
     AppBoot.run().then(() => setBooting(false))
   }, [])
 

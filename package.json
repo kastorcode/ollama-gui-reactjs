@@ -4,11 +4,14 @@
   "description": "Ollama Graphical User Interface",
   "author": "<kastor.code/> Matheus Ramalho de Oliveira",
   "private": false,
+  "homepage": "https://kastorcode.github.io/ollama-gui-reactjs",
   "scripts": {
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "eject": "craco eject"
+    "eject": "craco eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -48,6 +51,7 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
-    "@types/react-transition-group": "^4.4.10"
+    "@types/react-transition-group": "^4.4.10",
+    "gh-pages": "^6.1.1"
   }
 }

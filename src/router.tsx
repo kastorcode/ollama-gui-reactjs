@@ -10,8 +10,12 @@ const SplashScreen = lazy(() => import('~/pages/splashScreen'))
 
 const router = createBrowserRouter([
   {
-    path: ROUTES.ROOT,
+    path: '/',
     errorElement: <SplashScreen><NotFound /></SplashScreen>,
+    element: <SplashScreen><NotFound /></SplashScreen>
+  },
+  {
+    path: ROUTES.ROOT,
     element: <SplashScreen><Chat /></SplashScreen>
   },
   {

@@ -6,8 +6,6 @@ import { updateConfig } from '~/stores/config/actions'
 
 export default class AppBoot {
 
-  public static booted = false
-
   public static async run () {
     AppBoot.updateConfigHandler()
     AppBoot.loadChatsHandler()
