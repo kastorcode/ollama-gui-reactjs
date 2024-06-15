@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/ollama-gui-reactjs/static/css/main.e2628c28.css",
+    "main.js": "/ollama-gui-reactjs/static/js/main.233821a2.js",
+    "static/css/595.50dcd131.chunk.css": "/ollama-gui-reactjs/static/css/595.50dcd131.chunk.css",
+    "static/js/595.fdded3de.chunk.js": "/ollama-gui-reactjs/static/js/595.fdded3de.chunk.js",
+    "static/js/665.8c57a640.chunk.js": "/ollama-gui-reactjs/static/js/665.8c57a640.chunk.js",
+    "static/js/625.c20445b6.chunk.js": "/ollama-gui-reactjs/static/js/625.c20445b6.chunk.js",
+    "static/css/755.4e4fde9a.chunk.css": "/ollama-gui-reactjs/static/css/755.4e4fde9a.chunk.css",
+    "static/js/755.269bb141.chunk.js": "/ollama-gui-reactjs/static/js/755.269bb141.chunk.js",
+    "static/js/413.5110e15e.chunk.js": "/ollama-gui-reactjs/static/js/413.5110e15e.chunk.js",
+    "static/media/sf-pro-regular.otf": "/ollama-gui-reactjs/static/media/sf-pro-regular.d1f5e6e16dd4f75c3950.otf",
+    "index.html": "/ollama-gui-reactjs/index.html",
+    "main.e2628c28.css.map": "/ollama-gui-reactjs/static/css/main.e2628c28.css.map",
+    "main.233821a2.js.map": "/ollama-gui-reactjs/static/js/main.233821a2.js.map",
+    "595.50dcd131.chunk.css.map": "/ollama-gui-reactjs/static/css/595.50dcd131.chunk.css.map",
+    "595.fdded3de.chunk.js.map": "/ollama-gui-reactjs/static/js/595.fdded3de.chunk.js.map",
+    "665.8c57a640.chunk.js.map": "/ollama-gui-reactjs/static/js/665.8c57a640.chunk.js.map",
+    "625.c20445b6.chunk.js.map": "/ollama-gui-reactjs/static/js/625.c20445b6.chunk.js.map",
+    "755.4e4fde9a.chunk.css.map": "/ollama-gui-reactjs/static/css/755.4e4fde9a.chunk.css.map",
+    "755.269bb141.chunk.js.map": "/ollama-gui-reactjs/static/js/755.269bb141.chunk.js.map",
+    "413.5110e15e.chunk.js.map": "/ollama-gui-reactjs/static/js/413.5110e15e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e2628c28.css",
+    "static/js/main.233821a2.js"
+  ]
+}
