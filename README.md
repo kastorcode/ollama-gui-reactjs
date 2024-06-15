@@ -52,6 +52,15 @@
 
 ---
 
+### Running from GitHub Pages
+
+1. You need to have the [Ollama server](https://ollama.com/download) installed on your machine, or configure the app to use an external URL;
+2. By default, the app uses the llama3 model, you can install it with the command: `ollama run llama3`;
+3. If you have the local server, run it with the following command releasing CORS: `export OLLAMA_ORIGINS=https://*.github.io && ollama serve`;
+4. Access at: [kastorcode.github.io/ollama-gui-reactjs](https://kastorcode.github.io/ollama-gui-reactjs).
+
+---
+
 <p align="center">
   <big><b>&lt;kastor.code/&gt;</b></big>
 </p>

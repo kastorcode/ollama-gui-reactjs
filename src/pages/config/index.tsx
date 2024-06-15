@@ -45,7 +45,7 @@ export default function Config () {
 
   useEffect(() => {
     renderCount.current++
-    if (renderCount.current < 3) return
+    if (renderCount.current < 2) return
     Store.set('config', config)
   }, [config])
 
